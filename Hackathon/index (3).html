@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ===================== SEO METADATA ===================== -->
+  <title>Auralis AI — Put your data on autopilot</title>
+  <meta name="description" content="Auralis AI helps teams automate the data busywork — connect your tools, clean and move data, and let AI handle the repetitive pipelines. Live dashboards, predictive alerts, and pricing in INR, USD & EUR." />
+  <meta name="theme-color" content="#233d4d" />
+  <meta name="author" content="Auralis AI" />
+  <meta name="keywords" content="AI automation, data automation, workflow orchestration, real-time data pipelines, analytics dashboard, no-code integrations" />
+  <link rel="canonical" href="https://auralis.ai/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Auralis AI" />
+  <meta property="og:title" content="Auralis AI — Put your data on autopilot" />
+  <meta property="og:description" content="Connect your tools, clean and move data, and let AI run the repetitive pipelines so your team doesn't have to." />
+  <meta property="og:url" content="https://auralis.ai/" />
+  <meta property="og:image" content="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='630'%3E%3Crect width='1200' height='630' fill='%23233d4d'/%3E%3Ctext x='80' y='320' fill='%23fe7f2d' font-family='Arial' font-size='96' font-weight='bold'%3EAuralis AI%3C/text%3E%3Ctext x='84' y='400' fill='%23eaf0f2' font-family='Arial' font-size='40'%3EPut your data on autopilot%3C/text%3E%3C/svg%3E" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Auralis AI — Put your data on autopilot" />
+  <meta name="twitter:description" content="Let AI handle the repetitive data pipelines so your team can focus on the work that matters." />
+  <meta name="twitter:image" content="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='630'%3E%3Crect width='1200' height='630' fill='%23233d4d'/%3E%3Ctext x='80' y='320' fill='%23fe7f2d' font-family='Arial' font-size='96' font-weight='bold'%3EAuralis AI%3C/text%3E%3C/svg%3E" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Auralis AI",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "description": "AI-driven data automation platform that connects tools, cleans and moves data, and automates repetitive pipelines.",
+    "offers": { "@type": "Offer", "price": "2999", "priceCurrency": "INR" },
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "1280" }
+  }
+  </script>
+
+  <!-- Font: Manrope (with graceful offline fallback) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       DESIGN TOKENS — Pumpkin + Charcoal palette, Manrope font
+       ============================================================ */
+    :root {
+      /* Brand palette (from provided swatches) */
+      --pumpkin:       #fe7f2d;
+      --charcoal:      #233d4d;
+
+      /* Derived shades */
+      --pumpkin-600:   #f26a14;
+      --pumpkin-300:   #ffa869;
+      --pumpkin-soft:  rgba(254,127,45,.14);
+
+      --bg:            #15262f;   /* deeper charcoal */
+      --bg-soft:       #1a303b;
+      --surface:       #233d4d;   /* charcoal card */
+      --surface-2:     #2b4858;
+      --surface-3:     #325264;
+      --border:        #3a5667;
+      --border-soft:   #2f4a5a;
+
+      --text:          #eef3f5;
+      --text-muted:    #aebcc4;
+      --text-dim:      #7d909b;
+
+      --good:          #4cc9a3;
+      --grad: linear-gradient(135deg, #fe7f2d 0%, #ffa869 100%);
+      --grad-soft: linear-gradient(135deg, rgba(254,127,45,.20), rgba(254,127,45,.04));
+
+      --font: "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+      /* Motion (PRD timings) */
+      --t-hover: 180ms ease-out;
+      --t-toggle: 180ms ease-out;
+      --t-layout: 340ms ease-in-out;
+
+      --radius: 16px;
+      --radius-lg: 22px;
+      --maxw: 1200px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font-family: var(--font); line-height: 1.6; overflow-x: hidden;
+      -webkit-font-smoothing: antialiased; font-weight: 400;
+    }
+    body::before {
+      content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background:
+        radial-gradient(55vw 45vh at 80% -10%, rgba(254,127,45,.16), transparent 60%),
+        radial-gradient(45vw 40vh at 8% 0%, rgba(254,127,45,.06), transparent 55%);
+    }
+    h1,h2,h3,h4 { font-family: var(--font); line-height: 1.1; margin: 0; letter-spacing: -0.025em; font-weight: 800; }
+    p { margin: 0; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; }
+    img, svg { display: block; max-width: 100%; }
+    ul { margin: 0; padding: 0; list-style: none; }
+    :focus-visible { outline: 2px solid var(--pumpkin); outline-offset: 3px; border-radius: 6px; }
+
+    .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 12.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--pumpkin-300); padding: 7px 14px; border: 1px solid var(--border);
+      border-radius: 999px; background: var(--grad-soft);
+    }
+    .section { padding: 96px 0; position: relative; z-index: 1; }
+    .section-head { max-width: 700px; margin: 0 auto 56px; text-align: center; }
+    .section-head h2 { font-size: clamp(28px, 4vw, 46px); margin: 18px 0 14px; }
+    .section-head p { color: var(--text-muted); font-size: 17px; }
+    .grad-text { color: var(--pumpkin); }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+      font-weight: 700; font-size: 15px; padding: 13px 22px; border-radius: 12px;
+      border: 1px solid transparent;
+      transition: transform var(--t-hover), box-shadow var(--t-hover), background var(--t-hover), border-color var(--t-hover);
+      will-change: transform;
+    }
+    .btn-primary { background: var(--pumpkin); color: #1b2f3a; box-shadow: 0 10px 30px -8px rgba(254,127,45,.55); }
+    .btn-primary:hover { transform: translateY(-2px); background: var(--pumpkin-300); box-shadow: 0 16px 40px -10px rgba(254,127,45,.7); }
+    .btn-ghost { background: rgba(255,255,255,.04); color: var(--text); border-color: var(--border); }
+    .btn-ghost:hover { transform: translateY(-2px); border-color: var(--pumpkin); background: var(--pumpkin-soft); }
+
+    /* ============================ HEADER ============================ */
+    header.site { position: sticky; top: 0; z-index: 50; backdrop-filter: blur(14px); background: rgba(21,38,47,.78); border-bottom: 1px solid var(--border-soft); }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 70px; }
+    .brand { display: flex; align-items: center; gap: 11px; font-weight: 800; font-size: 19px; letter-spacing: -.02em; }
+    .brand .logo { width: 32px; height: 32px; flex: none; }
+    .nav-links { display: flex; align-items: center; gap: 30px; }
+    .nav-links a { color: var(--text-muted); font-size: 15px; font-weight: 600; transition: color var(--t-hover); }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta { display: flex; align-items: center; gap: 14px; }
+    .hamburger { display: none; background: none; border: 1px solid var(--border); border-radius: 10px; width: 42px; height: 42px; align-items: center; justify-content: center; }
+    .hamburger svg { stroke: var(--text); }
+    .mobile-menu { display: none; flex-direction: column; gap: 4px; padding: 10px 24px 22px; border-bottom: 1px solid var(--border-soft); background: rgba(21,38,47,.97); }
+    .mobile-menu a { padding: 13px 8px; color: var(--text-muted); font-weight: 600; border-radius: 10px; }
+    .mobile-menu a:hover { background: var(--surface); color: var(--text); }
+    .mobile-menu.open { display: flex; animation: slideDown var(--t-layout); }
+
+    /* ============================ HERO ============================ */
+    .hero { padding: 80px 0 64px; position: relative; }
+    .hero-grid { display: grid; grid-template-columns: 1.02fr .98fr; gap: 52px; align-items: center; }
+    .hero h1 { font-size: clamp(38px, 5.4vw, 64px); margin: 22px 0 20px; }
+    .hero .sub { font-size: clamp(16px, 2vw, 19px); color: var(--text-muted); max-width: 540px; margin-bottom: 30px; }
+    .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
+    .hero-trust { display: flex; align-items: center; gap: 22px; margin-top: 30px; flex-wrap: wrap; color: var(--text-dim); font-size: 13.5px; }
+    .hero-trust .stars { color: var(--pumpkin); letter-spacing: 2px; }
+
+    .anim { opacity: 0; transform: translateY(16px); animation: fadeUp 460ms cubic-bezier(.22,.61,.36,1) forwards; }
+    .d1{animation-delay:40ms}.d2{animation-delay:110ms}.d3{animation-delay:180ms}.d4{animation-delay:250ms}.d5{animation-delay:320ms}
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+    @keyframes slideDown { from{opacity:0;transform:translateY(-8px)} to{opacity:1;transform:translateY(0)} }
+
+    /* ---- Hero dashboard mock with live charts ---- */
+    .dash { position: relative; background: linear-gradient(165deg, var(--surface) 0%, var(--bg-soft) 100%); border: 1px solid var(--border); border-radius: 20px; padding: 18px; box-shadow: 0 40px 90px -34px rgba(0,0,0,.7); }
+    .dash-bar { display: flex; align-items: center; gap: 7px; padding: 2px 4px 14px; }
+    .dash-bar .dot { width: 11px; height: 11px; border-radius: 50%; }
+    .dash-bar .title { margin-left: 10px; font-size: 13px; color: var(--text-dim); font-weight: 600; }
+    .dash-bar .live { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 700; color: var(--good); }
+    .dash-bar .live::before { content:""; width: 7px; height: 7px; border-radius: 50%; background: var(--good); animation: blink 1.6s ease-in-out infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.25} }
+    .dash-kpis { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 12px; }
+    .kpi { background: var(--bg-soft); border: 1px solid var(--border-soft); border-radius: 12px; padding: 12px; }
+    .kpi .l { font-size: 11px; color: var(--text-dim); font-weight: 600; }
+    .kpi .v { font-size: 20px; font-weight: 800; margin-top: 3px; letter-spacing: -.02em; }
+    .kpi .chg { font-size: 11px; font-weight: 700; color: var(--good); }
+    .dash-main { background: var(--bg-soft); border: 1px solid var(--border-soft); border-radius: 12px; padding: 14px 14px 6px; }
+    .dash-main .cap { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+    .dash-main .cap span { font-size: 12.5px; color: var(--text-muted); font-weight: 600; }
+    .dash-main .cap .tag { color: var(--pumpkin); }
+
+    .float-chip { position: absolute; display: flex; align-items: center; gap: 8px; padding: 9px 13px; border-radius: 11px; font-size: 12.5px; font-weight: 700; background: rgba(26,48,59,.92); border: 1px solid var(--border); backdrop-filter: blur(8px); box-shadow: 0 12px 30px -12px rgba(0,0,0,.7); }
+    .float-chip .dot { width: 8px; height: 8px; border-radius: 50%; }
+    .chip-1 { top: -14px; right: 24px; animation: floaty 5s ease-in-out infinite; }
+    .chip-2 { bottom: -16px; left: 18px; animation: floaty 6s ease-in-out infinite .6s; }
+    @keyframes floaty { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+
+    /* Logos */
+    .logos { margin-top: 60px; }
+    .logos p { text-align: center; color: var(--text-dim); font-size: 12.5px; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 22px; }
+    .logo-row { display: flex; align-items: center; justify-content: center; gap: 44px; flex-wrap: wrap; opacity: .7; }
+    .logo-row span { font-weight: 800; font-size: 19px; color: var(--text-muted); letter-spacing: -.01em; }
+
+    /* ====================== FEATURES (Bento / Accordion) ====================== */
+    .bento { display: grid; grid-template-columns: repeat(3,1fr); grid-auto-rows: 200px; gap: 18px; }
+    .bento-item {
+      position: relative; overflow: hidden; background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 24px; display: flex; flex-direction: column; justify-content: space-between;
+      transition: transform var(--t-hover), border-color var(--t-hover), background var(--t-hover), box-shadow var(--t-hover);
+      cursor: pointer; text-align: left; color: inherit; width: 100%;
+    }
+    .bento-item.big { grid-column: span 2; grid-row: span 2; }
+    .bento-item.tall { grid-row: span 2; }
+    .bento-item:hover, .bento-item:focus-visible { transform: translateY(-4px); border-color: var(--pumpkin); box-shadow: 0 20px 50px -24px rgba(254,127,45,.5); }
+    .bento-item.active { border-color: var(--pumpkin); background: linear-gradient(160deg, var(--surface-2), var(--surface)); box-shadow: 0 22px 60px -26px rgba(254,127,45,.45); }
+    .bento-item.active::after { content:""; position:absolute; inset:0; border-radius: var(--radius-lg); background: var(--grad-soft); pointer-events: none; z-index: 0; }
+    .bento-item > *:not(.feat-bg) { position: relative; z-index: 1; }
+    /* Thematic background art per feature */
+    .feat-bg { position: absolute; right: -6px; bottom: -6px; width: 58%; max-width: 260px; opacity: .16; pointer-events: none; z-index: 0; transition: opacity var(--t-hover), transform var(--t-hover); }
+    .bento-item.big .feat-bg { width: 46%; max-width: 320px; opacity: .2; }
+    .bento-item.tall .feat-bg { width: 80%; }
+    .bento-item:hover .feat-bg, .bento-item:focus-visible .feat-bg, .bento-item.active .feat-bg { opacity: .42; transform: translateY(-4px) scale(1.04); }
+    .feat-bg .stroke-anim { stroke-dasharray: 1; stroke-dashoffset: 1; }
+    .bento-item:hover .feat-bg .stroke-anim, .bento-item.active .feat-bg .stroke-anim { animation: drawArt 1100ms ease forwards; }
+    @keyframes drawArt { to { stroke-dashoffset: 0; } }
+    .feat-ico { width: 48px; height: 48px; border-radius: 13px; display: flex; align-items: center; justify-content: center; background: var(--pumpkin-soft); border: 1px solid var(--border); }
+    .feat-ico svg { width: 26px; height: 26px; }
+    .bento-item h3 { font-size: 19px; margin: 16px 0 8px; }
+    .bento-item .desc { color: var(--text-muted); font-size: 14.5px; }
+    .bento-item.big h3 { font-size: 26px; }
+    .bento-item.big .desc { font-size: 16px; max-width: 90%; }
+    .feat-detail { color: var(--pumpkin); font-size: 13px; font-weight: 700; margin-top: 14px; opacity: 0; max-height: 0; transform: translateY(6px); transition: opacity var(--t-toggle), transform var(--t-toggle), max-height var(--t-layout); overflow: hidden; }
+    .bento-item.active .feat-detail, .bento-item.big .feat-detail { opacity: 1; max-height: 80px; transform: translateY(0); }
+
+    .accordion { display: none; flex-direction: column; gap: 12px; }
+    .acc-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: border-color var(--t-hover); }
+    .acc-item.active { border-color: var(--pumpkin); }
+    .acc-trigger { width: 100%; display: flex; align-items: center; gap: 14px; padding: 18px; background: none; border: none; color: var(--text); text-align: left; font-weight: 700; font-size: 16.5px; }
+    .acc-trigger .feat-ico { width: 40px; height: 40px; flex: none; }
+    .acc-trigger .feat-ico svg { width: 22px; height: 22px; }
+    .acc-trigger .chev { margin-left: auto; transition: transform var(--t-toggle); flex: none; stroke: var(--text-muted); }
+    .acc-item.active .acc-trigger .chev { transform: rotate(180deg); }
+    .acc-panel { max-height: 0; overflow: hidden; transition: max-height var(--t-layout); }
+    .acc-item.active .acc-panel { max-height: 260px; }
+    .acc-panel-inner { padding: 0 18px 20px 72px; color: var(--text-muted); font-size: 15px; }
+    .acc-panel-inner .feat-detail { color: var(--pumpkin); font-weight: 700; font-size: 13.5px; margin-top: 12px; opacity: 1; max-height: none; transform: none; }
+
+    /* ====================== ANALYTICS / CHARTS SECTION ====================== */
+    .analytics-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 22px; }
+    .chart-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 26px; transition: transform var(--t-hover), border-color var(--t-hover); }
+    .chart-card:hover { transform: translateY(-3px); border-color: var(--pumpkin); }
+    .chart-card .ch-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 18px; }
+    .chart-card h3 { font-size: 18px; }
+    .chart-card .ch-sub { color: var(--text-dim); font-size: 13px; margin-top: 4px; }
+    .chart-card .ch-big { font-size: 30px; font-weight: 800; letter-spacing: -.03em; }
+    .chart-card .ch-chg { font-size: 13px; font-weight: 700; color: var(--good); }
+    .legend { display: flex; gap: 16px; margin-top: 14px; flex-wrap: wrap; }
+    .legend span { display: inline-flex; align-items: center; gap: 7px; font-size: 12.5px; color: var(--text-muted); font-weight: 600; }
+    .legend i { width: 11px; height: 11px; border-radius: 3px; display: inline-block; }
+    .analytics-bottom { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 22px; margin-top: 22px; }
+    .bars { display: flex; align-items: flex-end; gap: 12px; height: 150px; padding-top: 10px; }
+    .bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 8px; height: 100%; justify-content: flex-end; }
+    .bar { width: 100%; max-width: 34px; border-radius: 7px 7px 3px 3px; background: var(--grad); height: 0; transition: height 900ms cubic-bezier(.22,.61,.36,1); }
+    .bar.muted { background: var(--surface-3); }
+    .bar-col small { font-size: 11.5px; color: var(--text-dim); font-weight: 600; }
+    .donut-wrap { display: flex; align-items: center; gap: 18px; }
+    .donut { position: relative; width: 132px; height: 132px; flex: none; }
+    .donut .mid { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .donut .mid b { font-size: 26px; font-weight: 800; }
+    .donut .mid small { font-size: 11px; color: var(--text-dim); }
+    .ring-track { stroke: var(--surface-3); }
+    .gauge-list { display: flex; flex-direction: column; gap: 16px; }
+    .gauge .gl { display: flex; justify-content: space-between; font-size: 13px; font-weight: 600; margin-bottom: 7px; }
+    .gauge .gl span:last-child { color: var(--pumpkin); }
+    .track { height: 9px; border-radius: 99px; background: var(--surface-3); overflow: hidden; }
+    .track > i { display: block; height: 100%; width: 0; border-radius: 99px; background: var(--grad); transition: width 1100ms cubic-bezier(.22,.61,.36,1); }
+
+    /* ============================ PRICING ============================ */
+    .price-controls { display: flex; flex-direction: column; align-items: center; gap: 18px; margin-bottom: 46px; }
+    .seg { display: inline-flex; padding: 5px; gap: 4px; background: var(--surface); border: 1px solid var(--border); border-radius: 999px; }
+    .seg button { border: none; background: none; color: var(--text-muted); font-weight: 700; font-size: 14px; padding: 9px 20px; border-radius: 999px; transition: color var(--t-toggle), background var(--t-toggle); display: inline-flex; align-items: center; gap: 8px; }
+    .seg button[aria-pressed="true"] { background: var(--pumpkin); color: #1b2f3a; }
+    .save-badge { font-size: 11px; font-weight: 800; padding: 2px 7px; border-radius: 6px; background: rgba(254,127,45,.18); color: var(--pumpkin-300); }
+    .seg button[aria-pressed="true"] .save-badge { background: rgba(27,47,58,.25); color: #1b2f3a; }
+    .price-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; align-items: stretch; }
+    .price-card { position: relative; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 30px 26px; display: flex; flex-direction: column; transition: transform var(--t-hover), border-color var(--t-hover); }
+    .price-card:hover { transform: translateY(-4px); border-color: var(--pumpkin); }
+    .price-card.featured { border-color: var(--pumpkin); background: linear-gradient(170deg, var(--surface-2), var(--surface)); box-shadow: 0 30px 70px -34px rgba(254,127,45,.5); }
+    .popular { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); background: var(--pumpkin); color: #1b2f3a; font-size: 11.5px; font-weight: 800; letter-spacing: .04em; padding: 5px 14px; border-radius: 999px; text-transform: uppercase; }
+    .plan-name { font-weight: 800; font-size: 20px; }
+    .plan-tag { color: var(--text-muted); font-size: 14px; margin-top: 6px; min-height: 40px; }
+    .price-line { display: flex; align-items: baseline; gap: 4px; margin: 18px 0 4px; }
+    .price-amount { font-weight: 800; font-size: 42px; letter-spacing: -.03em; }
+    .price-cycle { color: var(--text-dim); font-size: 14px; }
+    .price-note { color: var(--text-dim); font-size: 12.5px; min-height: 18px; }
+    .price-card ul { margin: 22px 0 26px; display: flex; flex-direction: column; gap: 12px; }
+    .price-card li { display: flex; gap: 10px; align-items: flex-start; color: var(--text-muted); font-size: 14.5px; }
+    .price-card li svg { flex: none; margin-top: 3px; }
+    .price-card .btn { width: 100%; margin-top: auto; }
+
+    /* ============================ SOCIAL PROOF ============================ */
+    .metrics { display: grid; grid-template-columns: repeat(4,1fr); gap: 18px; margin-bottom: 56px; }
+    .metric { text-align: center; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px 16px; }
+    .metric .num { font-weight: 800; font-size: clamp(30px,4vw,40px); color: var(--pumpkin); letter-spacing: -.02em; }
+    .metric .lbl { color: var(--text-muted); font-size: 13.5px; margin-top: 6px; }
+    .tgrid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    .tcard { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 26px; display: flex; flex-direction: column; gap: 16px; transition: transform var(--t-hover), border-color var(--t-hover); }
+    .tcard:hover { transform: translateY(-4px); border-color: var(--pumpkin); }
+    .tcard .stars { color: var(--pumpkin); letter-spacing: 2px; font-size: 14px; }
+    .tcard blockquote { margin: 0; color: var(--text); font-size: 15px; line-height: 1.65; }
+    .tcard .who { display: flex; align-items: center; gap: 12px; margin-top: auto; }
+    .avatar { width: 42px; height: 42px; border-radius: 50%; flex: none; display: flex; align-items: center; justify-content: center; font-weight: 800; color: #1b2f3a; }
+    .who .name { font-weight: 700; font-size: 14.5px; }
+    .who .role { color: var(--text-dim); font-size: 13px; }
+
+    /* ============================ CTA BAND ============================ */
+    .cta-band { position: relative; overflow: hidden; border-radius: 28px; padding: 56px; text-align: center; border: 1px solid var(--border); background: linear-gradient(150deg, var(--surface-2), var(--bg-soft)); }
+    .cta-band::before { content:""; position:absolute; inset:0; background: var(--grad-soft); }
+    .cta-band > * { position: relative; z-index: 1; }
+    .cta-band h2 { font-size: clamp(28px,4vw,42px); margin-bottom: 14px; }
+    .cta-band p { color: var(--text-muted); max-width: 520px; margin: 0 auto 28px; font-size: 17px; }
+
+    /* ============================ FOOTER ============================ */
+    footer.site { border-top: 1px solid var(--border-soft); padding: 64px 0 36px; margin-top: 30px; background: var(--bg-soft); position: relative; z-index: 1; }
+    .foot-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 36px; }
+    .foot-brand p { color: var(--text-muted); font-size: 14.5px; margin-top: 16px; max-width: 280px; }
+    .foot-col h4 { font-size: 13px; text-transform: uppercase; letter-spacing: .1em; color: var(--text-dim); margin-bottom: 16px; font-weight: 700; }
+    .foot-col a { display: block; color: var(--text-muted); font-size: 14.5px; padding: 7px 0; transition: color var(--t-hover); }
+    .foot-col a:hover { color: var(--text); }
+    .foot-bottom { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-top: 48px; padding-top: 26px; border-top: 1px solid var(--border-soft); color: var(--text-dim); font-size: 13.5px; }
+    .socials { display: flex; gap: 12px; }
+    .socials a { width: 38px; height: 38px; border: 1px solid var(--border); border-radius: 10px; display: flex; align-items: center; justify-content: center; transition: border-color var(--t-hover), background var(--t-hover); }
+    .socials a:hover { border-color: var(--pumpkin); background: var(--pumpkin-soft); }
+
+    /* ============================ RESPONSIVE ============================ */
+    @media (max-width: 1024px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+      .dash { max-width: 520px; margin: 0 auto; }
+      .bento-item.big { grid-column: span 2; grid-row: span 1; }
+      .analytics-grid { grid-template-columns: 1fr; }
+      .analytics-bottom { grid-template-columns: 1fr; }
+      .foot-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+    }
+    @media (max-width: 860px) {
+      .nav-links { display: none; }
+      .nav-cta .btn-ghost { display: none; }
+      .hamburger { display: flex; }
+      .metrics { grid-template-columns: repeat(2,1fr); }
+      .tgrid { grid-template-columns: 1fr; }
+      .price-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+      .bento { display: none; }
+      .accordion { display: flex; }
+      .section { padding: 72px 0; }
+      .cta-band { padding: 40px 24px; }
+    }
+    @media (max-width: 560px) {
+      .wrap { padding: 0 18px; }
+      .metrics { grid-template-columns: 1fr 1fr; }
+      .foot-grid { grid-template-columns: 1fr 1fr; }
+      .hero-cta .btn { flex: 1; }
+      .dash-kpis { grid-template-columns: 1fr 1fr; }
+      .dash-kpis .kpi:last-child { grid-column: span 2; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================ HEADER ============================ -->
+  <header class="site">
+    <div class="wrap">
+      <nav class="nav" aria-label="Primary">
+        <a href="#top" class="brand" aria-label="Auralis AI home">
+          <svg class="logo" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+            <rect x="3" y="3" width="34" height="34" rx="10" fill="#fe7f2d" opacity=".16"/>
+            <path d="M20 8l11 24H9L20 8z" stroke="#fe7f2d" stroke-width="2.4" stroke-linejoin="round"/>
+            <circle cx="20" cy="24" r="3.4" fill="#fe7f2d"/>
+          </svg>
+          Auralis<span style="color:var(--pumpkin)">AI</span>
+        </a>
+        <div class="nav-links">
+          <a href="#features">Platform</a>
+          <a href="#analytics">Analytics</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#proof">Customers</a>
+        </div>
+        <div class="nav-cta">
+          <a href="#pricing" class="btn btn-ghost">Sign in</a>
+          <a href="#pricing" class="btn btn-primary">Start free</a>
+          <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+          </button>
+        </div>
+      </nav>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#features">Platform</a>
+      <a href="#analytics">Analytics</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#proof">Customers</a>
+      <a href="#pricing" class="btn btn-primary" style="margin-top:8px">Start free</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- ============================ HERO ============================ -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <span class="eyebrow anim d1">🎃 Data automation, minus the busywork</span>
+            <h1 id="hero-title" class="anim d2">Put your data on <span class="grad-text">autopilot</span></h1>
+            <p class="sub anim d3">You didn't hire your team to babysit broken pipelines. Auralis AI connects your tools, cleans and moves your data, and quietly handles the repetitive stuff in the background — so people can get back to the work they actually enjoy.</p>
+            <div class="hero-cta anim d4">
+              <a href="#pricing" class="btn btn-primary">Start free — no card needed
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+              <a href="#analytics" class="btn btn-ghost">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="6 4 20 12 6 20" fill="currentColor" stroke="none"/></svg>
+                See it in action
+              </a>
+            </div>
+            <div class="hero-trust anim d5">
+              <span><span class="stars">★★★★★</span> 4.9/5 from 1,280+ teams</span>
+              <span>SOC 2 Type II · GDPR</span>
+              <span>Set up in an afternoon</span>
+            </div>
+          </div>
+
+          <!-- Hero dashboard mock with real animated charts -->
+          <div class="anim d3" style="position:relative">
+            <div class="dash" aria-label="Live snapshot of an Auralis AI dashboard">
+              <div class="dash-bar">
+                <span class="dot" style="background:#ff5f57"></span>
+                <span class="dot" style="background:#febc2e"></span>
+                <span class="dot" style="background:#28c840"></span>
+                <span class="title">auralis · workspace</span>
+                <span class="live">Live</span>
+              </div>
+              <div class="dash-kpis">
+                <div class="kpi"><div class="l">Events today</div><div class="v" data-count="2.4" data-suffix="M">0</div><div class="chg">▲ 18%</div></div>
+                <div class="kpi"><div class="l">Pipelines</div><div class="v" data-count="146" data-suffix="">0</div><div class="chg">▲ 6%</div></div>
+                <div class="kpi"><div class="l">Uptime</div><div class="v" data-count="99.99" data-suffix="%">0</div><div class="chg">stable</div></div>
+              </div>
+              <div class="dash-main">
+                <div class="cap"><span>Throughput · last 14 days</span><span class="tag">▲ 32% vs last period</span></div>
+                <!-- Area chart (built from scratch, animated) -->
+                <svg id="areaChart" viewBox="0 0 360 130" width="100%" height="130" preserveAspectRatio="none" role="img" aria-label="Throughput trending upward over the last 14 days"></svg>
+              </div>
+            </div>
+            <div class="float-chip chip-1"><span class="dot" style="background:var(--good)"></span> Pipeline healthy</div>
+            <div class="float-chip chip-2"><span class="dot" style="background:var(--pumpkin)"></span> 2.4M events/min</div>
+          </div>
+        </div>
+    </section>
+
+    <!-- ============================ FEATURES ============================ -->
+    <section class="section" id="features" aria-labelledby="features-title">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow">What's inside</span>
+          <h2 id="features-title">Everything you need, <span class="grad-text">nothing you don't</span></h2>
+          <p>Hover a card to dig in. Shrink your window to mobile and it folds into an accordion — keeping whatever you were just looking at open.</p>
+        </div>
+        <div class="bento" id="bento" role="list" aria-label="Platform features grid"></div>
+        <div class="accordion" id="accordion" aria-label="Platform features list"></div>
+      </div>
+    </section>
+
+    <!-- ============================ ANALYTICS / CHARTS ============================ -->
+    <section class="section" id="analytics" aria-labelledby="analytics-title" style="background:var(--bg-soft); border-top:1px solid var(--border-soft); border-bottom:1px solid var(--border-soft);">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow">See the difference</span>
+          <h2 id="analytics-title">Numbers your team will <span class="grad-text">actually feel</span></h2>
+          <p>This is the kind of view you'd get on day one — throughput climbing, errors dropping, and a clear sense of where your automation budget goes.</p>
+        </div>
+
+        <div class="analytics-grid">
+          <!-- Multi-line chart -->
+          <article class="chart-card">
+            <div class="ch-head">
+              <div>
+                <h3>Events processed vs. errors</h3>
+                <div class="ch-sub">Rolling 12 months · all workspaces</div>
+              </div>
+              <div style="text-align:right">
+                <div class="ch-big">2.4B</div>
+                <div class="ch-chg">▲ 41% YoY</div>
+              </div>
+            </div>
+            <svg id="lineChart" viewBox="0 0 560 240" width="100%" height="240" role="img" aria-label="Line chart: events processed rising steadily while error rate falls over twelve months"></svg>
+            <div class="legend">
+              <span><i style="background:var(--pumpkin)"></i> Events processed</span>
+              <span><i style="background:var(--good)"></i> Errors caught &amp; auto-fixed</span>
+            </div>
+          </article>
+
+          <!-- Donut / composition -->
+          <article class="chart-card">
+            <div class="ch-head"><div><h3>Where the time goes</h3><div class="ch-sub">Automated vs. manual work</div></div></div>
+            <div class="donut-wrap">
+              <div class="donut">
+                <svg viewBox="0 0 120 120" width="132" height="132" role="img" aria-label="78 percent of data work is now automated">
+                  <circle class="ring-track" cx="60" cy="60" r="50" fill="none" stroke-width="14"/>
+                  <circle id="donutArc" cx="60" cy="60" r="50" fill="none" stroke="var(--pumpkin)" stroke-width="14" stroke-linecap="round" transform="rotate(-90 60 60)" stroke-dasharray="314.16" stroke-dashoffset="314.16" style="transition:stroke-dashoffset 1200ms cubic-bezier(.22,.61,.36,1)"/>
+                </svg>
+                <div class="mid"><b id="donutPct">0%</b><small>automated</small></div>
+              </div>
+              <ul style="display:flex;flex-direction:column;gap:12px;font-size:13.5px">
+                <li style="display:flex;align-items:center;gap:9px"><i style="width:11px;height:11px;border-radius:3px;background:var(--pumpkin);display:inline-block"></i> Hands-off automation · <b style="margin-left:auto">78%</b></li>
+                <li style="display:flex;align-items:center;gap:9px;color:var(--text-muted)"><i style="width:11px;height:11px;border-radius:3px;background:var(--surface-3);display:inline-block"></i> Manual review · <b style="margin-left:auto">22%</b></li>
+              </ul>
+            </div>
+          </article>
+        </div>
+
+        <div class="analytics-bottom">
+          <!-- Bar chart -->
+          <article class="chart-card">
+            <h3 style="margin-bottom:4px">Hours saved per week</h3>
+            <div class="ch-sub" style="margin-bottom:6px">Per team, after switching</div>
+            <div class="bars" id="barChart" role="img" aria-label="Bar chart of weekly hours saved across teams, growing each quarter">
+              <div class="bar-col"><div class="bar" data-h="42"></div><small>Q1</small></div>
+              <div class="bar-col"><div class="bar" data-h="60"></div><small>Q2</small></div>
+              <div class="bar-col"><div class="bar" data-h="78"></div><small>Q3</small></div>
+              <div class="bar-col"><div class="bar" data-h="100"></div><small>Q4</small></div>
+            </div>
+          </article>
+
+          <!-- Progress gauges -->
+          <article class="chart-card">
+            <h3 style="margin-bottom:18px">How customers rate us</h3>
+            <div class="gauge-list" id="gauges">
+              <div class="gauge"><div class="gl"><span>Ease of setup</span><span>96%</span></div><div class="track"><i data-w="96"></i></div></div>
+              <div class="gauge"><div class="gl"><span>Reliability</span><span>99%</span></div><div class="track"><i data-w="99"></i></div></div>
+              <div class="gauge"><div class="gl"><span>Support response</span><span>94%</span></div><div class="track"><i data-w="94"></i></div></div>
+              <div class="gauge"><div class="gl"><span>Would recommend</span><span>92%</span></div><div class="track"><i data-w="92"></i></div></div>
+            </div>
+          </article>
+
+          <!-- ROI snapshot -->
+          <article class="chart-card" style="display:flex;flex-direction:column;justify-content:center">
+            <h3 style="margin-bottom:6px">The short version</h3>
+            <div class="ch-sub" style="margin-bottom:20px">What a typical team sees in 90 days</div>
+            <div style="display:flex;flex-direction:column;gap:18px">
+              <div><div class="ch-big" style="color:var(--pumpkin)" data-count="60" data-suffix="%">0</div><div class="ch-sub">less time on manual data work</div></div>
+              <div><div class="ch-big" data-count="3.2" data-suffix="x">0</div><div class="ch-sub">return on what they spend with us</div></div>
+              <div><div class="ch-big" data-count="11" data-suffix=" days">0</div><div class="ch-sub">average payback period</div></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ PRICING ============================ -->
+    <section class="section" id="pricing" aria-labelledby="pricing-title">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow">Pricing</span>
+          <h2 id="pricing-title">Fair pricing, <span class="grad-text">no surprises</span></h2>
+          <p>Pick your currency and billing cycle — the numbers update on the spot. Go annual and you'll save 20%.</p>
+        </div>
+        <div class="price-controls">
+          <div class="seg" role="group" aria-label="Billing cycle">
+            <button id="bill-monthly" data-cycle="monthly" aria-pressed="true">Monthly</button>
+            <button id="bill-annual" data-cycle="annual" aria-pressed="false">Annual <span class="save-badge">−20%</span></button>
+          </div>
+          <div class="seg" role="group" aria-label="Currency">
+            <button data-currency="INR" aria-pressed="true">₹ INR</button>
+            <button data-currency="USD" aria-pressed="false">$ USD</button>
+            <button data-currency="EUR" aria-pressed="false">€ EUR</button>
+          </div>
+        </div>
+        <div class="price-grid" id="priceGrid"></div>
+      </div>
+    </section>
+
+    <!-- ============================ SOCIAL PROOF ============================ -->
+    <section class="section" id="proof" aria-labelledby="proof-title" style="background:var(--bg-soft); border-top:1px solid var(--border-soft); border-bottom:1px solid var(--border-soft);">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow">Real teams, real results</span>
+          <h2 id="proof-title">People sleep better <span class="grad-text">with Auralis on</span></h2>
+          <p>From two-person startups to teams running billions of events a day — here's what they tell us.</p>
+        </div>
+        <div class="metrics">
+          <article class="metric"><div class="num" data-count="2.4" data-suffix="B+">0</div><div class="lbl">Events handled every day</div></article>
+          <article class="metric"><div class="num" data-count="99.99" data-suffix="%">0</div><div class="lbl">Uptime, year after year</div></article>
+          <article class="metric"><div class="num" data-count="4.9" data-suffix="/5">0</div><div class="lbl">Average customer rating</div></article>
+          <article class="metric"><div class="num" data-count="60" data-suffix="%">0</div><div class="lbl">Less manual data work</div></article>
+        </div>
+        <div class="tgrid">
+          <article class="tcard">
+            <div class="stars" aria-label="Rated 5 out of 5">★★★★★</div>
+            <blockquote>"We ripped out three flaky ETL tools and replaced them with Auralis. The first quiet on-call week in two years felt almost suspicious — turns out it just works."</blockquote>
+            <div class="who"><span class="avatar" style="background:var(--pumpkin)">PR</span><div><div class="name">Priya Rao</div><div class="role">VP Data, Nimbus</div></div></div>
+          </article>
+          <article class="tcard">
+            <div class="stars" aria-label="Rated 5 out of 5">★★★★★</div>
+            <blockquote>"The predictive alerts flagged a data drift our analysts had been missing for months. It paid for itself before the trial even ended."</blockquote>
+            <div class="who"><span class="avatar" style="background:linear-gradient(135deg,#fe7f2d,#ffa869)">MC</span><div><div class="name">Marco Conti</div><div class="role">Head of Eng, Quanta</div></div></div>
+          </article>
+          <article class="tcard">
+            <div class="stars" aria-label="Rated 5 out of 5">★★★★★</div>
+            <blockquote>"My ops team shipped their first workflow without filing a single ticket to engineering. That alone sold the whole company on it."</blockquote>
+            <div class="who"><span class="avatar" style="background:linear-gradient(135deg,#4cc9a3,#fe7f2d)">SK</span><div><div class="name">Sara Klein</div><div class="role">COO, Orbital</div></div></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ CTA BAND ============================ -->
+    <section class="section" aria-labelledby="cta-title">
+      <div class="wrap">
+        <div class="cta-band">
+          <h2 id="cta-title">Give your team their afternoons back</h2>
+          <p>Start free in a few minutes. No credit card, no sales call, no strings — just see what it feels like when the busywork runs itself.</p>
+          <div class="hero-cta" style="justify-content:center">
+            <a href="#pricing" class="btn btn-primary">Start free trial</a>
+            <a href="#footer" class="btn btn-ghost">Talk to a human</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================ FOOTER ============================ -->
+  <footer class="site" id="footer">
+    <div class="wrap">
+      <div class="foot-grid">
+        <div class="foot-brand">
+          <a href="#top" class="brand" aria-label="Auralis AI home">
+            <svg class="logo" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+              <rect x="3" y="3" width="34" height="34" rx="10" fill="#fe7f2d" opacity=".16"/>
+              <path d="M20 8l11 24H9L20 8z" stroke="#fe7f2d" stroke-width="2.4" stroke-linejoin="round"/>
+              <circle cx="20" cy="24" r="3.4" fill="#fe7f2d"/>
+            </svg>
+            Auralis<span style="color:var(--pumpkin)">AI</span>
+          </a>
+          <p>The friendly automation layer for teams who'd rather build than babysit pipelines.</p>
+        </div>
+        <nav class="foot-col" aria-label="Product"><h4>Product</h4>
+          <a href="#features">Features</a><a href="#analytics">Analytics</a><a href="#pricing">Pricing</a><a href="#proof">Customers</a><a href="#features">Changelog</a></nav>
+        <nav class="foot-col" aria-label="Company"><h4>Company</h4>
+          <a href="#footer">About</a><a href="#footer">Careers</a><a href="#footer">Blog</a><a href="#footer">Contact</a></nav>
+        <nav class="foot-col" aria-label="Legal"><h4>Legal</h4>
+          <a href="#footer">Privacy</a><a href="#footer">Terms</a><a href="#footer">Security</a><a href="#footer">DPA</a></nav>
+      </div>
+      <div class="foot-bottom">
+        <p>© 2026 Auralis AI, Inc. Made for teams who like their evenings free.</p>
+        <div class="socials" aria-label="Social media">
+          <a href="#footer" aria-label="Auralis AI on X"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2H21.5l-7.5 8.57L23 22h-6.78l-4.78-6.25L5.9 22H2.64l8.02-9.17L1.5 2h6.95l4.32 5.71L18.244 2zm-1.19 18h1.83L7.04 3.9H5.08L17.054 20z"/></svg></a>
+          <a href="#footer" aria-label="Auralis AI on LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0zM0 8h5v16H0V8zm7.5 0h4.78v2.2h.07c.67-1.2 2.3-2.46 4.73-2.46C22.4 7.74 24 10 24 14.1V24h-5v-8.7c0-2.07-.74-3.48-2.6-3.48-1.42 0-2.26.96-2.63 1.88-.14.33-.17.78-.17 1.24V24h-5V8z"/></svg></a>
+          <a href="#footer" aria-label="Auralis AI on GitHub"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5.99.11-.78.42-1.3.76-1.6-2.66-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12.01 12.01 0 0 0 24 12.5C24 5.87 18.63.5 12 .5z"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+  /* =====================================================================
+     AURALIS AI — Vanilla JS (no UI/animation libraries)
+     Pricing matrix + isolated updates · Bento↔Accordion persistence
+     Hand-built animated charts (SVG/CSS) revealed on scroll
+     ===================================================================== */
+  (function () {
+    "use strict";
+
+    /* ---------- ICONS ---------- */
+    var P = "#fe7f2d", G = "#4cc9a3", L = "#ffa869";
+    var ICONS = {
+      orchestrate:'<svg viewBox="0 0 24 24" fill="none" stroke="'+P+'" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="6" r="2.4"/><circle cx="5" cy="18" r="2.4"/><circle cx="19" cy="12" r="2.4"/><path d="M7.4 6.6 16.6 11M7.4 17.4 16.6 13"/></svg>',
+      pipeline:'<svg viewBox="0 0 24 24" fill="none" stroke="'+L+'" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h6a3 3 0 0 1 3 3v4a3 3 0 0 0 3 3h6"/><circle cx="3" cy="7" r="1.6" fill="'+L+'"/><circle cx="21" cy="17" r="1.6" fill="'+L+'"/></svg>',
+      predict:'<svg viewBox="0 0 24 24" fill="none" stroke="'+G+'" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-6 4 4 6-8"/><path d="M18 7h3v3"/></svg>',
+      security:'<svg viewBox="0 0 24 24" fill="none" stroke="'+P+'" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg>',
+      nocode:'<svg viewBox="0 0 24 24" fill="none" stroke="'+L+'" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M8 9l-2 3 2 3M16 9l2 3-2 3M13 8l-2 8"/></svg>',
+      observe:'<svg viewBox="0 0 24 24" fill="none" stroke="'+G+'" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M11 8v3l2 2M20 20l-3.2-3.2"/></svg>'
+    };
+
+    /* ---------- THEMATIC BACKGROUND ART (matches each title) ---------- */
+    var pp="#fe7f2d", gg="#4cc9a3", ll="#ffa869";
+    var ART = {
+      // network of nodes — self-healing workflows
+      orchestrate:'<svg class="feat-bg" viewBox="0 0 240 180" fill="none" aria-hidden="true">'+
+        '<g stroke="'+pp+'" stroke-width="2" class="stroke-anim" pathLength="1">'+
+        '<path d="M30 40 L110 90 L60 150"/><path d="M110 90 L200 50"/><path d="M110 90 L200 140"/></g>'+
+        '<g fill="'+pp+'"><circle cx="30" cy="40" r="9"/><circle cx="60" cy="150" r="8"/><circle cx="200" cy="50" r="8"/><circle cx="200" cy="140" r="9"/></g>'+
+        '<circle cx="110" cy="90" r="14" fill="'+ll+'"/><path d="M104 90l5 5 9-10" stroke="#233d4d" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+      // line/area chart — real-time pipelines
+      pipeline:'<svg class="feat-bg" viewBox="0 0 240 160" fill="none" aria-hidden="true">'+
+        '<defs><linearGradient id="ppF" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="'+ll+'" stop-opacity=".5"/><stop offset="1" stop-color="'+ll+'" stop-opacity="0"/></linearGradient></defs>'+
+        '<path d="M10 120 C50 90 70 110 100 70 S160 30 230 25 L230 150 L10 150 Z" fill="url(#ppF)"/>'+
+        '<path class="stroke-anim" pathLength="1" d="M10 120 C50 90 70 110 100 70 S160 30 230 25" stroke="'+ll+'" stroke-width="3" stroke-linecap="round"/>'+
+        '<circle cx="230" cy="25" r="5" fill="'+ll+'"/></svg>',
+      // upward spike with alert dot — catches problems early
+      predict:'<svg class="feat-bg" viewBox="0 0 200 200" fill="none" aria-hidden="true">'+
+        '<path class="stroke-anim" pathLength="1" d="M20 150 L60 110 L90 130 L130 70 L160 95 L185 45" stroke="'+gg+'" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>'+
+        '<circle cx="185" cy="45" r="13" fill="none" stroke="'+gg+'" stroke-width="2.5"/><circle cx="185" cy="45" r="5" fill="'+gg+'"/>'+
+        '<path d="M170 30l4-3M200 30l-4-3" stroke="'+gg+'" stroke-width="2.4" stroke-linecap="round"/></svg>',
+      // shield with check — secure by default
+      security:'<svg class="feat-bg" viewBox="0 0 200 200" fill="none" aria-hidden="true">'+
+        '<path class="stroke-anim" pathLength="1" d="M100 25 L165 50 V100 C165 145 135 170 100 180 C65 170 35 145 35 100 V50 Z" stroke="'+pp+'" stroke-width="3.5" fill="rgba(254,127,45,.06)"/>'+
+        '<path class="stroke-anim" pathLength="1" d="M72 100 l20 20 l38 -42" stroke="'+pp+'" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+      // code brackets — no-code / integrations
+      nocode:'<svg class="feat-bg" viewBox="0 0 220 160" fill="none" aria-hidden="true">'+
+        '<g class="stroke-anim" pathLength="1" stroke="'+ll+'" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none">'+
+        '<path d="M70 45 L35 80 L70 115"/><path d="M150 45 L185 80 L150 115"/><path d="M125 35 L95 125"/></g></svg>',
+      // radar / eye — observability
+      observe:'<svg class="feat-bg" viewBox="0 0 200 200" fill="none" aria-hidden="true">'+
+        '<g stroke="'+gg+'" stroke-width="2" opacity=".8"><circle cx="100" cy="100" r="30"/><circle cx="100" cy="100" r="55"/><circle cx="100" cy="100" r="80"/></g>'+
+        '<path class="stroke-anim" pathLength="1" d="M100 100 L100 20" stroke="'+gg+'" stroke-width="3" stroke-linecap="round"/>'+
+        '<path d="M100 100 L100 20 A80 80 0 0 1 156 44 Z" fill="'+gg+'" opacity=".18"/>'+
+        '<circle cx="100" cy="100" r="7" fill="'+gg+'"/><circle cx="140" cy="60" r="5" fill="'+pp+'"/></svg>'
+    };
+
+    /* ---------- FEATURES ---------- */
+    var FEATURES = [
+      { icon:'orchestrate', size:'big', title:'Workflows that fix themselves',
+        desc:'Drag your steps into place and let the AI planner handle the rest — it retries, reroutes, and self-heals when something upstream breaks, so a 3am page becomes a non-event.',
+        detail:'Visual builder · auto-retries · smart routing' },
+      { icon:'pipeline', size:'', title:'Real-time pipelines',
+        desc:'Move millions of events a minute with sub-second latency and exactly-once delivery.',
+        detail:'2.4M events/min · exactly-once' },
+      { icon:'predict', size:'tall', title:'Catches problems early',
+        desc:'Models watch your data and flag drift or anomalies before they ever reach production.',
+        detail:'Anomaly detection · auto-remediation' },
+      { icon:'security', size:'', title:'Secure by default',
+        desc:'SOC 2 Type II, GDPR, end-to-end encryption and granular access control out of the box.',
+        detail:'SOC 2 · GDPR · RBAC · SSO' },
+      { icon:'nocode', size:'', title:'No-code when you want it',
+        desc:'300+ connectors and a drag-and-drop builder so ops can ship without waiting on devs.',
+        detail:'300+ connectors · drag & drop' },
+      { icon:'observe', size:'', title:'You can see everything',
+        desc:'Full lineage, live dashboards and cost insight on every single run.',
+        detail:'Lineage · live metrics · cost insight' }
+    ];
+
+    /* ===================== PRICING MATRIX ===================== */
+    var pricingMatrix = {
+      currencies: { INR:{symbol:'₹',tariff:1}, USD:{symbol:'$',tariff:0.012}, EUR:{symbol:'€',tariff:0.011} },
+      billing:    { monthly:{multiplier:1,discount:1}, annual:{multiplier:12,discount:0.8} },
+      tiers:      { starter:{baseRate:2999}, growth:{baseRate:7999}, enterprise:{baseRate:19999} }
+    };
+    var PLAN_META = {
+      starter:{name:'Starter',tag:'For small teams dipping a toe into automation.',featured:false,
+        features:['Up to 5 workflows','100K events / month','10 integrations','Community support','Standard analytics']},
+      growth:{name:'Growth',tag:'For scaling teams that want the smart stuff.',featured:true,
+        features:['Unlimited workflows','25M events / month','All 300+ integrations','Predictive automation','Priority support','Advanced observability']},
+      enterprise:{name:'Enterprise',tag:'For orgs with serious security & scale needs.',featured:false,
+        features:['Everything in Growth','Unlimited events','SSO & SAML','Dedicated SLA & CSM','On-prem / VPC deploy','Custom data residency']}
+    };
+    function calculatePrice(tier, currency, billingCycle){
+      var base=pricingMatrix.tiers[tier].baseRate, tariff=pricingMatrix.currencies[currency].tariff, cycle=pricingMatrix.billing[billingCycle];
+      return base*tariff*cycle.multiplier*cycle.discount;
+    }
+    function formatPrice(currency, value){ return pricingMatrix.currencies[currency].symbol + Math.round(value).toLocaleString('en-US'); }
+
+    /* ===================== BENTO ↔ ACCORDION (shared index) ===================== */
+    var activeIndex = 0;
+    var bentoEl=document.getElementById('bento'), accEl=document.getElementById('accordion');
+    var bentoItems=[], accItems=[];
+
+    function buildFeatures(){
+      FEATURES.forEach(function(f,i){
+        var card=document.createElement('button');
+        card.type='button';
+        card.className='bento-item'+(f.size?' '+f.size:'');
+        card.setAttribute('role','listitem');
+        card.setAttribute('aria-pressed', i===activeIndex);
+        card.setAttribute('aria-label', f.title);
+        card.innerHTML=(ART[f.icon]||'')+'<div class="feat-ico" aria-hidden="true">'+ICONS[f.icon]+'</div><div><h3>'+f.title+'</h3><p class="desc">'+f.desc+'</p><p class="feat-detail">→ '+f.detail+'</p></div>';
+        var act=function(){ setActiveIndex(i); };
+        card.addEventListener('mouseenter',act); card.addEventListener('focus',act); card.addEventListener('click',act);
+        bentoEl.appendChild(card); bentoItems.push(card);
+
+        var acc=document.createElement('article'); acc.className='acc-item';
+        var pid='acc-panel-'+i, bid='acc-trigger-'+i;
+        acc.innerHTML='<button class="acc-trigger" id="'+bid+'" aria-expanded="'+(i===activeIndex)+'" aria-controls="'+pid+'"><span class="feat-ico" aria-hidden="true">'+ICONS[f.icon]+'</span><span>'+f.title+'</span><svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="acc-panel" id="'+pid+'" role="region" aria-labelledby="'+bid+'"><div class="acc-panel-inner">'+f.desc+'<p class="feat-detail">→ '+f.detail+'</p></div></div>';
+        acc.querySelector('.acc-trigger').addEventListener('click',function(){ setActiveIndex(i); });
+        accEl.appendChild(acc); accItems.push(acc);
+      });
+      renderActive();
+    }
+    function setActiveIndex(i){ activeIndex=i; renderActive(); }
+    function renderActive(){
+      bentoItems.forEach(function(el,i){ var on=i===activeIndex; el.classList.toggle('active',on); el.setAttribute('aria-pressed',on); });
+      accItems.forEach(function(el,i){ var on=i===activeIndex; el.classList.toggle('active',on); el.querySelector('.acc-trigger').setAttribute('aria-expanded',on); });
+    }
+
+    /* ===================== PRICING UI (isolated text updates) ===================== */
+    var priceGrid=document.getElementById('priceGrid');
+    var state={currency:'INR',cycle:'monthly'};
+    var priceRefs={};
+    function buildPricing(){
+      Object.keys(pricingMatrix.tiers).forEach(function(tier){
+        var meta=PLAN_META[tier], card=document.createElement('article');
+        card.className='price-card'+(meta.featured?' featured':'');
+        var lis=meta.features.map(function(ft){return '<li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fe7f2d" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>'+ft+'</li>';}).join('');
+        card.innerHTML=(meta.featured?'<span class="popular">Most popular</span>':'')+'<div class="plan-name">'+meta.name+'</div><p class="plan-tag">'+meta.tag+'</p><div class="price-line"><span class="price-amount" data-amount="'+tier+'">—</span><span class="price-cycle">/mo</span></div><p class="price-note" data-note="'+tier+'"></p><ul>'+lis+'</ul><a href="#footer" class="btn '+(meta.featured?'btn-primary':'btn-ghost')+'">'+(tier==='enterprise'?'Talk to sales':'Start free trial')+'</a>';
+        priceGrid.appendChild(card);
+        priceRefs[tier]={amount:card.querySelector('[data-amount="'+tier+'"]'),note:card.querySelector('[data-note="'+tier+'"]')};
+      });
+      updatePrices();
+    }
+    function updatePrices(){
+      var cur=state.currency, cyc=state.cycle;
+      Object.keys(pricingMatrix.tiers).forEach(function(tier){
+        var ref=priceRefs[tier];
+        if(cyc==='annual'){
+          var annual=calculatePrice(tier,cur,'annual');
+          ref.amount.textContent=formatPrice(cur,annual/12);
+          ref.note.textContent='Billed annually at '+formatPrice(cur,annual)+' · save 20%';
+        } else {
+          ref.amount.textContent=formatPrice(cur,calculatePrice(tier,cur,'monthly'));
+          ref.note.textContent='Billed monthly';
+        }
+      });
+    }
+    function bindControls(){
+      document.querySelectorAll('[data-cycle]').forEach(function(btn){
+        if(!pricingMatrix.billing[btn.dataset.cycle]) return;
+        btn.addEventListener('click',function(){
+          state.cycle=btn.dataset.cycle;
+          document.getElementById('bill-monthly').setAttribute('aria-pressed',state.cycle==='monthly');
+          document.getElementById('bill-annual').setAttribute('aria-pressed',state.cycle==='annual');
+          updatePrices();
+        });
+      });
+      var curBtns=document.querySelectorAll('[data-currency]');
+      curBtns.forEach(function(btn){ btn.addEventListener('click',function(){ state.currency=btn.dataset.currency; curBtns.forEach(function(b){b.setAttribute('aria-pressed',b===btn);}); updatePrices(); }); });
+    }
+
+    /* ===================== MOBILE MENU ===================== */
+    function bindMenu(){
+      var ham=document.getElementById('hamburger'), menu=document.getElementById('mobileMenu');
+      ham.addEventListener('click',function(){ var open=menu.classList.toggle('open'); ham.setAttribute('aria-expanded',open); ham.setAttribute('aria-label',open?'Close menu':'Open menu'); });
+      menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click',function(){ menu.classList.remove('open'); ham.setAttribute('aria-expanded','false'); }); });
+    }
+
+    /* ===================== CHARTS (hand-built SVG) ===================== */
+    function buildSmoothPath(pts){
+      // catmull-rom -> bezier for a smooth line
+      var d='M'+pts[0][0]+','+pts[0][1];
+      for(var i=0;i<pts.length-1;i++){
+        var p0=pts[i-1]||pts[i], p1=pts[i], p2=pts[i+1], p3=pts[i+2]||p2;
+        var c1x=p1[0]+(p2[0]-p0[0])/6, c1y=p1[1]+(p2[1]-p0[1])/6;
+        var c2x=p2[0]-(p3[0]-p1[0])/6, c2y=p2[1]-(p3[1]-p1[1])/6;
+        d+=' C'+c1x+','+c1y+' '+c2x+','+c2y+' '+p2[0]+','+p2[1];
+      }
+      return d;
+    }
+    function scalePts(vals,w,h,pad){
+      var max=Math.max.apply(null,vals), min=Math.min.apply(null,vals);
+      var n=vals.length, span=(max-min)||1;
+      return vals.map(function(v,i){
+        var x=pad+ i*((w-2*pad)/(n-1));
+        var y=h-pad-((v-min)/span)*(h-2*pad);
+        return [x,y];
+      });
+    }
+
+    function drawAreaChart(){
+      var svg=document.getElementById('areaChart'); if(!svg) return;
+      var w=360,h=130,pad=8;
+      var vals=[20,26,22,30,28,38,34,44,40,52,49,60,57,72];
+      var pts=scalePts(vals,w,h,pad);
+      var line=buildSmoothPath(pts);
+      var area=line+' L'+pts[pts.length-1][0]+','+(h-pad)+' L'+pts[0][0]+','+(h-pad)+' Z';
+      svg.innerHTML=
+        '<defs><linearGradient id="aFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fe7f2d" stop-opacity=".4"/><stop offset="1" stop-color="#fe7f2d" stop-opacity="0"/></linearGradient></defs>'+
+        '<path d="'+area+'" fill="url(#aFill)" opacity="0" style="transition:opacity 700ms ease 500ms"/>'+
+        '<path d="'+line+'" fill="none" stroke="#fe7f2d" stroke-width="2.5" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" style="transition:stroke-dashoffset 1300ms cubic-bezier(.22,.61,.36,1)"/>'+
+        '<circle cx="'+pts[pts.length-1][0]+'" cy="'+pts[pts.length-1][1]+'" r="3.5" fill="#fe7f2d" opacity="0" style="transition:opacity 300ms ease 1300ms"/>';
+      requestAnimationFrame(function(){ requestAnimationFrame(function(){
+        svg.querySelector('path[stroke]').style.strokeDashoffset='0';
+        svg.querySelector('path[fill^="url"]').style.opacity='1';
+        svg.querySelector('circle').style.opacity='1';
+      });});
+    }
+
+    function drawLineChart(){
+      var svg=document.getElementById('lineChart'); if(!svg||svg.dataset.done) return;
+      svg.dataset.done='1';
+      var w=560,h=240,pad=24;
+      var events=[30,38,34,46,52,60,58,72,80,88,96,110];
+      var errors=[70,62,66,54,48,40,36,30,24,18,14,10];
+      var ep=scalePts(events,w,h,pad), erp=scalePts(errors,w,h,pad);
+      // grid
+      var grid='';
+      for(var g=0; g<=4; g++){ var gy=pad+g*((h-2*pad)/4); grid+='<line x1="'+pad+'" y1="'+gy+'" x2="'+(w-pad)+'" y2="'+gy+'" stroke="#325264" stroke-width="1" opacity=".5"/>'; }
+      var labels=['J','F','M','A','M','J','J','A','S','O','N','D'];
+      var lab='';
+      ep.forEach(function(p,i){ lab+='<text x="'+p[0]+'" y="'+(h-6)+'" fill="#7d909b" font-size="9" text-anchor="middle">'+labels[i]+'</text>'; });
+      var pe=buildSmoothPath(ep), per=buildSmoothPath(erp);
+      var areaE=pe+' L'+ep[ep.length-1][0]+','+(h-pad)+' L'+ep[0][0]+','+(h-pad)+' Z';
+      svg.innerHTML='<defs><linearGradient id="lFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fe7f2d" stop-opacity=".25"/><stop offset="1" stop-color="#fe7f2d" stop-opacity="0"/></linearGradient></defs>'+
+        grid+lab+
+        '<path d="'+areaE+'" fill="url(#lFill)" opacity="0" style="transition:opacity 800ms ease 600ms"/>'+
+        '<path d="'+pe+'" fill="none" stroke="#fe7f2d" stroke-width="3" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" style="transition:stroke-dashoffset 1400ms cubic-bezier(.22,.61,.36,1)"/>'+
+        '<path d="'+per+'" fill="none" stroke="#4cc9a3" stroke-width="3" stroke-linecap="round" stroke-dasharray="6 6" pathLength="1" style="opacity:0;transition:opacity 600ms ease 700ms"/>';
+      requestAnimationFrame(function(){ requestAnimationFrame(function(){
+        var paths=svg.querySelectorAll('path');
+        paths[1].style.strokeDashoffset='0';
+        paths[0].style.opacity='1';
+        paths[2].style.opacity='1';
+      });});
+    }
+
+    function animateCounters(scope){
+      scope.querySelectorAll('[data-count]').forEach(function(el){
+        if(el.dataset.run) return; el.dataset.run='1';
+        var target=parseFloat(el.dataset.count), suffix=el.dataset.suffix||'';
+        var decimals=(el.dataset.count.indexOf('.')>=0)?(el.dataset.count.split('.')[1].length):0;
+        var start=performance.now(), dur=1300;
+        function tick(now){
+          var t=Math.min((now-start)/dur,1);
+          var eased=1-Math.pow(1-t,3);
+          var val=(target*eased).toFixed(decimals);
+          el.textContent=val+suffix;
+          if(t<1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      });
+    }
+
+    function runReveal(el){
+      if(el.id==='analytics' || el.querySelector('#lineChart')) drawLineChart();
+      // bars
+      el.querySelectorAll('.bar[data-h]').forEach(function(b){ b.style.height=b.dataset.h+'%'; });
+      // gauges
+      el.querySelectorAll('.track > i[data-w]').forEach(function(i){ i.style.width=i.dataset.w+'%'; });
+      // donut
+      var arc=el.querySelector('#donutArc');
+      if(arc){ var pct=78, circ=314.16; arc.style.strokeDashoffset=(circ*(1-pct/100)); 
+        var pctEl=el.querySelector('#donutPct'); var s=performance.now();
+        (function ramp(now){ var t=Math.min((now-s)/1200,1); pctEl.textContent=Math.round(78*(1-Math.pow(1-t,3)))+'%'; if(t<1) requestAnimationFrame(ramp); })(s);
+      }
+      animateCounters(el);
+    }
+
+    function setupObserver(){
+      var targets=[document.getElementById('analytics'), document.getElementById('proof'), document.querySelector('.dash')];
+      if(!('IntersectionObserver' in window)){ targets.forEach(function(t){ t&&runReveal(t); }); return; }
+      var io=new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if(e.isIntersecting){ runReveal(e.target); io.unobserve(e.target); } });
+      },{threshold:.25});
+      targets.forEach(function(t){ if(t) io.observe(t); });
+    }
+
+    /* ---------- Init ---------- */
+    buildFeatures();
+    buildPricing();
+    bindControls();
+    bindMenu();
+    drawAreaChart();      // hero chart draws on load (within entry window)
+    setupObserver();      // heavier charts/counters reveal on scroll
+  })();
+  </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a11b5378ef35eccd',t:'MTc4MjQ2NzYxOA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
